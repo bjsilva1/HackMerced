@@ -62,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
 
             while (true)
             { 
-                int curr_num_enemies = GameObject.FindGameObjectsWithTag("Enemy").size();
+                int curr_num_enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
                 if (curr_num_enemies < maxSpawnCount)
                     break;
 
