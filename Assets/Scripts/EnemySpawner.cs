@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
     public int spawnInterval = 1; 
-    public int maxSpawnCount = 5; 
+    public int maxSpawnCount = 5;
 
     private float timer;
     private int spawnCount; 
@@ -20,13 +20,18 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= spawnInterval && spawnCount < maxSpawnCount)
-        {
-            SpawnObject();
-            timer = 0; // Reset the timer
-        }
+        
     }
+
+    // Public call to spawn enemies
+    public void SpawnWave(int wave_num)
+    {
+        StartCoroutine(SpawnEnemies(wave_num));
+    }
+
+    //----------------------
+    //   Private functions
+    //----------------------
 
     private void OnDrawGizmos()
     {
@@ -34,6 +39,38 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radius);
         
     }
+
+    private int calcNumSpawns(int wave_num)
+    {
+        return 5;
+    }
+
+    private float calcSpawnDelay(int wave_num)
+    {
+        return 1;
+    }
+
+
+    private IEnumerator SpawnEnemies(int wave_num)
+    {
+        int num_spawns = calcNumSpawns(wave_num);
+        float spawn_delay = calcSpawnDelay(wave_num);
+        for (int i = 0; i < num_spawns; i++)
+        {
+            SpawnObject();
+            yield return new WaitForSeconds(spawn_delay);
+
+            while (true)
+            { 
+                int curr_num_enemies = GameObject.FindGameObjectsWithTag("Enemy").size();
+                if (curr_num_enemies < maxSpawnCount)
+                    break;
+
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+    }
+
     private void SpawnObject()
     {
         float angle = Random.Range(-360f,360f);
@@ -43,6 +80,5 @@ public class EnemySpawner : MonoBehaviour
         Vector3 SpawnPosition = new Vector3(x, 0, z) + transform.position;
 
         Instantiate(enemy, SpawnPosition, Quaternion.identity); // Spawn the object at the spawner's position
-        spawnCount++; // Increment the spawn count
     }
 }
