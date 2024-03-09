@@ -30,9 +30,10 @@ public class EnemyController : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject == player.gameObject)
+        if (collision.collider.gameObject.tag == "PlayerWeapon")
         {
             currentHealth--;
+            Destroy(collision.collider.gameObject);
         }
 
         if (currentHealth < 0)
