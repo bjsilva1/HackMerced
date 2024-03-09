@@ -59,10 +59,12 @@ public class FPS : MonoBehaviour
 
         //apply camera rotation
 
+        
         //move the actual player here
         if (m_velocity != Vector3.zero)
         {
             m_Rigid.MovePosition(m_Rigid.position + m_velocity * Time.fixedDeltaTime);
+            //m_Rigid.MovePosition(Vector3.Lerp(m_velocity, targetVelocity, Time.fixedDeltaTime));
         }
 
         if (m_rotation != Vector3.zero)
@@ -80,6 +82,7 @@ public class FPS : MonoBehaviour
         InternalLockUpdate();
 
     }
+    
 
     //controls the locking and unlocking of the mouse
     private void InternalLockUpdate()
