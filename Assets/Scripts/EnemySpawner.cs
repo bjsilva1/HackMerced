@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
 
     private int calcNumSpawns(int wave_num)
     {
-        return (int) (wave_num * wave_num / 9) + 5;
+        return (int) (wave_num * wave_num / 4) + 5;
     }
 
     private float calcSpawnDelay(int wave_num)
