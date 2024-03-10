@@ -28,12 +28,14 @@ public class GameManager : MonoBehaviour
             {
                 s.GetComponent<EnemySpawner>().SpawnWave(currentWave);
             }
+
+            hudController.showNextWave(currentWave);
+            hudController.setScore(currentWave);
         }
 
 
         // UI update
-        hudController.showNextWave(currentWave);
+
         hudController.setHealth(playerHealth.getHealth());
-        hudController.setScore(currentWave);
     }
 }
