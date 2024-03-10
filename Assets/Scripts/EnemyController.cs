@@ -35,6 +35,11 @@ public class EnemyController : MonoBehaviour
             currentHealth--;
             Destroy(other.gameObject);
         }
+        if (other.gameObject.tag == "Player")
+        {
+            currentHealth--;
+            other.gameObject.GetComponent<PlayerHealth>().lowerHealth();
+        }
 
         if (currentHealth < 0)
         {
