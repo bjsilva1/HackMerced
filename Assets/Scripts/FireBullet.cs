@@ -23,9 +23,8 @@ public class FireBullet : MonoBehaviour
 
     public void Fire(ActivateEventArgs arg)
     {
-        GameObject newBullet = Instantiate(bullet);
-        newBullet.transform.position = spawnpoint.position;
-        spawnpoint.GetComponent<Rigidbody>().velocity = spawnpoint.forward * fireSpeed;
+        GameObject newBullet = Instantiate(bullet, spawnpoint.position, Quaternion.identity);
+        newBullet.GetComponent<Rigidbody>().velocity = spawnpoint.forward * fireSpeed;
         Destroy(newBullet, 5);
 
     }

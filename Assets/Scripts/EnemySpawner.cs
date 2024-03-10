@@ -93,6 +93,8 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies(int wave_num)
     {
+        yield return new WaitForSeconds(5f);
+
         int num_spawns = calcNumSpawns(wave_num);
         float spawn_delay = calcSpawnDelay(wave_num);
         for (int i = 0; i < num_spawns; i++)
