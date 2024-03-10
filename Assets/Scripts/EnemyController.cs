@@ -28,12 +28,12 @@ public class EnemyController : MonoBehaviour
         rb.velocity = direction * enemySpeed + new Vector3(0, rb.velocity.y, 0);
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.gameObject.tag == "PlayerWeapon")
+        if (other.gameObject.tag == "PlayerWeapon")
         {
             currentHealth--;
-            Destroy(collision.collider.gameObject);
+            Destroy(other.gameObject);
         }
 
         if (currentHealth < 0)
