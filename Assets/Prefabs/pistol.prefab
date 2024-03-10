@@ -313,6 +313,7 @@ MonoBehaviour:
   spawnpoint: {fileID: 7350323238372096498}
   fireSpeed: 20
   modelTransform: {fileID: 6203487888735254460}
+  sightLine: {fileID: 7408699547241005859}
 --- !u!1 &6476272399055302543
 GameObject:
   m_ObjectHideFlags: 0
