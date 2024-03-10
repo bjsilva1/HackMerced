@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    GameObject[] enemySpawners;
+    public VRHUDController hudController;
+    public PlayerHealth playerHealth;
 
+    GameObject[] enemySpawners;
     int currentWave;
 
     // Start is called before the first frame update
@@ -27,6 +29,11 @@ public class GameManager : MonoBehaviour
                 s.GetComponent<EnemySpawner>().SpawnWave(currentWave);
             }
         }
-        Debug.Log(currentWave);
+
+
+        // UI update
+        hudController.showNextWave(currentWave);
+        hudController.setHealth(playerHealth.getHealth());
+        hudController.setScore(currentWave);
     }
 }
